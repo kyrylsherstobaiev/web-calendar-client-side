@@ -1,7 +1,6 @@
 import {
   Box,
   Flex,
-  Button,
   Grid,
   Stack,
   GridItem,
@@ -22,6 +21,7 @@ import { Week } from "../Week.jsx";
 import { HoursScale } from "../HoursScale.jsx";
 import { CardEvent } from "../CardEvent/CardEvent.jsx";
 import { SpinnerFetch } from "../SpinnerFetch/SpinnerFetch.jsx";
+import { Button } from "../Button/";
 
 //Hooks
 import { useGetWeek } from "./hook/useGetWeek.js";
@@ -74,8 +74,8 @@ export const UserSignedIn = () => {
       <Flex justify="center" px="1rem">
         <Flex maxW="1300px" width="full" gap="0.75rem">
           <Stack position="sticky" top="68px" alignSelf="flex-start">
-            <Button size="sm" onClick={onOpen}>
-              Create
+            <Button onClick={onOpen} style={{ width: "100%", letterSpacing: '0.01rem' }}>
+              New Event
             </Button>
             <CardEvent onClose={onClose} isOpen={isOpen} />
             <CalendarCustom />

@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Circle,
   Flex,
   Heading,
@@ -15,6 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setToday } from "../reducers/isToday.js";
 import { userSignedOut } from "../reducers/isSignedInUser.js";
 import { showToast } from "../toast/toast.js";
+import { Button } from "./Button";
 
 export const Header = ({ onSelected }) => {
   const pickedDate = useSelector((state) => state.pickedDate);
@@ -72,6 +72,7 @@ export const Header = ({ onSelected }) => {
               <Button
                 size="xs"
                 onClick={() => dispatch(setToday(`${new Date().getDate()}`))}
+                style={{ padding: "0.1rem 0.75rem", fontSize: "0.8rem" }}
               >
                 Today
               </Button>

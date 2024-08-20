@@ -1,0 +1,59 @@
+.custom-label {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  position: relative;
+  width: 150px;
+
+  .input-class {
+    display: block;
+    border: none;
+    border-bottom: 1.5px solid #565555;
+    color: #333232;
+    padding: 0.2rem 0;
+    outline: none;
+    width: 100%;
+
+    &::placeholder {
+      font-size: 0.7rem;
+      color: #6b6a6a;
+    }
+
+    &:focus {
+      border-color: #2c2b2b;
+    }
+
+    &:disabled {
+      border-color: #b9b7b7;
+      background-color: white;
+
+      &::placeholder {
+        color: #b9b7b7;
+      }
+    }
+  }
+
+  .isErrorInput {
+    border-color: #f44336;
+  }
+
+  button {
+    padding: 0;
+    position: absolute;
+    top: 25%;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.isDisabledInput {
+  pointer-events: none;
+  color: #b9b7b7;
+}
+
+.error {
+  color: #f44336;
+  height: 1rem;
+}

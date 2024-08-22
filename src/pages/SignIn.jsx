@@ -1,14 +1,9 @@
 import {
   Box,
-  Button,
   Center,
   Container,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
   Heading,
   Highlight,
-  Input,
   Stack,
   useToast,
 } from "@chakra-ui/react";
@@ -19,6 +14,8 @@ import { userSignedIn } from "../reducers/isSignedInUser.js";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showToast } from "../toast/toast.js";
+import { Input } from "../components/Input/";
+import { Button } from "../components/Button/";
 
 export const SignIn = () => {
   const dispatch = useDispatch();
@@ -90,30 +87,20 @@ export const SignIn = () => {
         </Heading>
         <Container as="form" onSubmit={handleSubmit(onSubmit)}>
           <Stack>
-            <FormControl id="email" isInvalid={!!errors.email}>
-              <FormLabel optionalIndicator={"*"} fontSize={11} mb={0.5}>
-                Email
-              </FormLabel>
-              <Input {...register("email")} placeholder="Email" size="sm" />
-              <FormErrorMessage mt={0.5} fontSize={11}>
-                {errors.email?.message}
-              </FormErrorMessage>
-            </FormControl>
-            <FormControl id="password" isInvalid={!!errors.password}>
-              <FormLabel optionalIndicator={"*"} fontSize={11} mb={0.5}>
-                Password
-              </FormLabel>
-              <Input
-                {...register("password")}
-                placeholder="Password"
-                type="password"
-                size="sm"
-              />
-              <FormErrorMessage mt={0.5} fontSize={11}>
-                {errors.password?.message}
-              </FormErrorMessage>
-            </FormControl>
-            <Button size="sm" type="submit">
+            <Input
+              name="email"
+              register={register}
+              placeholder={"Email"}
+              error={errors.email?.message}
+            />
+            <Input
+              name="password"
+              register={register}
+              placeholder={"Password"}
+              error={errors.password?.message}
+              type="password"
+            />
+            <Button type="submit" width={"100%"}>
               Sign In
             </Button>
           </Stack>

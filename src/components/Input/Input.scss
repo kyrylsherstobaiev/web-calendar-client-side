@@ -1,9 +1,10 @@
 .custom-label {
   display: inline-block;
-  font-size: 0.6rem;
+  font-size: 0.9rem;
   font-weight: 700;
   position: relative;
-  width: 150px;
+  width: 100%;
+  //font-family: inherit;
 
   .input-class {
     display: block;
@@ -15,8 +16,8 @@
     width: 100%;
 
     &::placeholder {
-      font-size: 0.7rem;
-      color: #6b6a6a;
+      font-size: 0.9rem;
+      color: #8a8989;
     }
 
     &:focus {
@@ -28,7 +29,7 @@
       background-color: white;
 
       &::placeholder {
-        color: #b9b7b7;
+        color: #cecbcb;
       }
     }
   }
@@ -40,20 +41,22 @@
   button {
     padding: 0;
     position: absolute;
-    top: 25%;
-    right: 0;
+    top: 14%;
+    right: 3px;
     background-color: transparent;
     border: none;
     cursor: pointer;
   }
-}
+  .isDisabledInput {
+    pointer-events: none;
+    color: #b9b7b7;
+  }
 
-.isDisabledInput {
-  pointer-events: none;
-  color: #b9b7b7;
-}
-
-.error {
-  color: #f44336;
-  height: 1rem;
+  .error {
+    color: #f44336;
+    height: 1rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    //margin-bottom: 1rem;
+  }
 }

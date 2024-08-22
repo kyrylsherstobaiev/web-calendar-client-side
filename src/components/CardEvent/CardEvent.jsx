@@ -2,16 +2,16 @@
 
 // Library Imports
 import React, { useRef } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  Button,
+  // Button,
   Container,
   Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
+  // FormControl,
+  // FormErrorMessage,
+  // FormLabel,
+  // Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -19,7 +19,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Select,
+  // Select,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
@@ -28,6 +28,9 @@ import { yupSchemeCreateEvent } from "../../yup/yupSchemeCreateEvent.js";
 import { useAddEvent } from "./hooks/useAddEvent.jsx";
 import { useChangeEvent } from "./hooks/useChangeEvent.jsx";
 import { useRemoveEvent } from "./hooks/useRemoveEvent.jsx";
+import { Input } from "../Input/";
+import { Select } from "../Select";
+import { Button } from "../Button/";
 
 export const CardEvent = ({
   isOpen,
@@ -47,15 +50,14 @@ export const CardEvent = ({
 
   const { user } = useSelector((state) => state.isSignedInUser);
 
-  const options = new Array(24).fill(null).map((_, i) => {
-    return <option value={i} key={i + "f"}>{`${i}:00`}</option>;
-  });
+  const options = new Array(24).fill(null).map((_, i) => i);
 
   const {
     handleSubmit,
     register,
     formState: { errors },
     reset,
+    control,
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(yupSchemeCreateEvent),
@@ -84,6 +86,7 @@ export const CardEvent = ({
     }
   };
 
+  // console.log(errors);
   return (
     <>
       <Modal
@@ -100,85 +103,66 @@ export const CardEvent = ({
             </ModalHeader>
             <ModalCloseButton onClick={() => reset()} />
             <ModalBody pb={6}>
-              <FormControl id="title" isInvalid={!!errors.title}>
-                <FormLabel mb={1} optionalIndicator={"*"}>
-                  Title:
-                </FormLabel>
-                <Input
-                  ref={initialRef}
-                  {...register("title")}
-                  placeholder="Describe event"
-                  size="sm"
-                  defaultValue={titleValue}
+              <Input
+                register={register}
+                name="title"
+                error={errors.title?.message}
+                label="New event"
+                placeholder="write event title"
+                defaultValue={titleValue}
+              />
+              <Input
+                register={register}
+                name="dateEvent"
+                error={errors.dateEvent?.message}
+                label="Select date"
+                type="date"
+                defaultValue={dateValue}
+              />
+              <Flex gap={1}>
+                <Controller
+                  control={control}
+                  name="startTimeEvent"
+                  render={({ field: { onChange }, fieldState: { error } }) => (
+                    <Select
+                      title="-- Start event time --"
+                      onSelected={onChange} // send value to hook form
+                      error={error?.message}
+                      defaultValue={startTimeEventValue}
+                      options={options}
+                    />
+                  )}
                 />
-                <FormErrorMessage mt={0.5} fontSize={11}>
-                  {errors.title?.message}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={!!errors.dateEvent} flex={1}>
-                <FormLabel optionalIndicator={"*"} mb={1}>
-                  Select date:
-                </FormLabel>
-                <Input
-                  type="date"
-                  {...register("dateEvent")}
-                  size="sm"
-                  defaultValue={dateValue}
+                <Controller
+                  control={control}
+                  name="endTimeEvent"
+                  render={({ field: { onChange }, fieldState: { error } }) => (
+                    <Select
+                      title="-- End event time --"
+                      onSelected={onChange} // send value to hook form
+                      error={error?.message}
+                      defaultValue={endTimeEventValue}
+                      options={options}
+                    />
+                  )}
                 />
-                <FormErrorMessage mt={0.5} fontSize={11}>
-                  {errors.dateEvent?.message}
-                </FormErrorMessage>
-              </FormControl>
-              <Flex mt={2} gap={2}>
-                <FormControl isInvalid={!!errors.startTimeEvent}>
-                  <FormLabel optionalIndicator={"*"} mb={1}>
-                    Select start time:
-                  </FormLabel>
-                  <Select
-                    {...register("startTimeEvent")}
-                    placeholder="Select end time event"
-                    size="sm"
-                    defaultValue={startTimeEventValue}
-                  >
-                    {options.map((el) => el)}
-                  </Select>
-                  <FormErrorMessage mt={0.5} fontSize={11}>
-                    {errors.startTimeEvent?.message}
-                  </FormErrorMessage>
-                </FormControl>
-                <FormControl isInvalid={!!errors.endTimeEvent}>
-                  <FormLabel optionalIndicator={"*"} mb={1}>
-                    Select end time:
-                  </FormLabel>
-                  <Select
-                    {...register("endTimeEvent")}
-                    placeholder="Select end time event"
-                    size="sm"
-                    defaultValue={endTimeEventValue}
-                  >
-                    {options.map((el) => el)}
-                  </Select>
-                  <FormErrorMessage mt={0.5} fontSize={11}>
-                    {errors.endTimeEvent?.message}
-                  </FormErrorMessage>
-                </FormControl>
               </Flex>
             </ModalBody>
-
-            <ModalFooter>
-              <Button colorScheme="blue" type="submit" mr={1} size="md">
+            <ModalFooter gap={0.5}>
+              <Button type="submit" className="btn-save">
                 Save
               </Button>
               <Button
-                mr={1}
-                size="md"
-                onClick={() => {
+                handleClick={() => {
                   onClose();
                   reset();
                 }}
+                type="button"
+                className="btn-cancel"
               >
                 Cancel
               </Button>
+
               {titleValue ? (
                 <Button
                   onClick={() => {
@@ -186,9 +170,7 @@ export const CardEvent = ({
                     reset();
                     onClose();
                   }}
-                  size="md"
-                  colorScheme="red"
-                  bg="red.400"
+                  className="btn-delete"
                 >
                   Delete
                 </Button>

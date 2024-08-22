@@ -7,9 +7,7 @@ import { Icon } from "../Icon/";
 
 function Button({
   children = "Button",
-  handleClick = () => {
-    console.log("hello");
-  },
+  handleClick,
   className,
   disabled = false,
   icon,
@@ -37,6 +35,7 @@ function Button({
         className={classes}
         disabled={disabled}
         {...props}
+        style={{ width: width }}
       >
         <Icon name={name} />
         {children}

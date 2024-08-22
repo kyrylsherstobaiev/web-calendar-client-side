@@ -70,9 +70,11 @@ export const Header = ({ onSelected }) => {
             </Flex>
             <Box>
               <Button
-                size="xs"
-                onClick={() => dispatch(setToday(`${new Date().getDate()}`))}
-                style={{ padding: "0.1rem 0.75rem", fontSize: "0.8rem" }}
+                handleClick={() =>
+                  dispatch(setToday(`${new Date().getDate()}`))
+                }
+                className={"btn-today"}
+                type="button"
               >
                 Today
               </Button>

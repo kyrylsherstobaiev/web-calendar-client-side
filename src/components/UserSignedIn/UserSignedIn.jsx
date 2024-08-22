@@ -74,7 +74,10 @@ export const UserSignedIn = () => {
       <Flex justify="center" px="1rem">
         <Flex maxW="1300px" width="full" gap="0.75rem">
           <Stack position="sticky" top="68px" alignSelf="flex-start">
-            <Button onClick={onOpen} style={{ width: "100%", letterSpacing: '0.01rem' }}>
+            <Button
+              onClick={onOpen}
+              style={{ width: "100%", letterSpacing: "0.01rem" }}
+            >
               New Event
             </Button>
             <CardEvent onClose={onClose} isOpen={isOpen} />

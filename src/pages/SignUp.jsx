@@ -1,16 +1,12 @@
 import {
   Box,
-  Button,
   Center,
   Container,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
   Heading,
-  Input,
   Stack,
   useToast,
   Highlight,
+  Flex,
 } from "@chakra-ui/react";
 
 import { useNavigate } from "react-router-dom";
@@ -19,6 +15,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
 import { showToast } from "../toast/toast.js";
+import { Input } from "../components/Input/";
+import { Button } from "../components/Button/";
 
 export const SignUp = () => {
   const navigate = useNavigate();
@@ -75,59 +73,45 @@ export const SignUp = () => {
           </Highlight>
         </Heading>
         <Container as="form" onSubmit={handleSubmit(onSubmit)}>
-          <Stack>
-            <FormControl id="email" isInvalid={!!errors.email}>
-              <FormLabel optionalIndicator={"*"} fontSize={11} mb={0.5}>
-                Email
-              </FormLabel>
-              <Input placeholder="Email" {...register("email")} size="sm" />
-              <FormErrorMessage mt={0.5} fontSize={11}>
-                {errors.email?.message}
-              </FormErrorMessage>
-            </FormControl>
-            <FormControl id="password" isInvalid={!!errors.password}>
-              <FormLabel optionalIndicator={"*"} fontSize={11} mb={0.5}>
-                Password
-              </FormLabel>
-              <Input
-                placeholder="Password"
-                size="sm"
-                type="password"
-                {...register("password")}
-              />
-              <FormErrorMessage mt={0.5} fontSize={11}>
-                {errors.password?.message}
-              </FormErrorMessage>
-            </FormControl>
-            <FormControl id="firstName" isInvalid={!!errors.firstName}>
-              <FormLabel fontSize={11} mb={0.5} optionalIndicator={"*"}>
-                First name
-              </FormLabel>
-              <Input
-                placeholder="First name"
-                {...register("firstName")}
-                size="sm"
-              ></Input>
-              <FormErrorMessage mt={0.5} fontSize={11}>
-                {errors.firstName?.message}
-              </FormErrorMessage>
-            </FormControl>
-            <FormControl id="lastName" isInvalid={!!errors.lastName}>
-              <FormLabel fontSize={11} mb={0.5} optionalIndicator={"*"}>
-                Last name
-              </FormLabel>
-              <Input
-                placeholder="Last name"
-                {...register("lastName")}
-                size="sm"
-              ></Input>
-              <FormErrorMessage mt={0.5} fontSize={11}>
-                {errors.lastName?.message}
-              </FormErrorMessage>
-            </FormControl>
-            <Button size="sm" type="submit">
-              Register
-            </Button>
+          <Stack spacing={"0.6rem"}>
+            <Input
+              register={register}
+              name="email"
+              placeholder="Email"
+              error={errors.email?.message}
+            />
+            <Input
+              register={register}
+              name="password"
+              placeholder="Password"
+              type="password"
+              error={errors.password?.message}
+            />
+            <Input
+              register={register}
+              name="firstName"
+              placeholder="First name"
+              error={errors.firstName?.message}
+            />
+            <Input
+              register={register}
+              name="lastName"
+              placeholder="Last name"
+              error={errors.lastName?.message}
+            />
+            <Flex flexDirection="column" gap={"0.1rem"}>
+              <Button type="submit" width="100%">
+                Register
+              </Button>
+              <Button
+                type="button"
+                width="100%"
+                handleClick={() => reset()}
+                className="btn-clear"
+              >
+                Clear
+              </Button>
+            </Flex>
           </Stack>
         </Container>
       </Box>

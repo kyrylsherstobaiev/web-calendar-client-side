@@ -28,7 +28,7 @@ import { useGetWeek } from "./hook/useGetWeek.js";
 
 //Other imports
 import moment from "moment";
-import { getEvents } from "../../api.js";
+import { getEvents } from "../../api/api.js";
 
 moment.updateLocale("en", {
   week: {

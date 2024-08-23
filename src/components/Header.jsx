@@ -1,3 +1,4 @@
+// Grouping and organizing imports for better readability
 import {
   Box,
   Circle,
@@ -8,13 +9,17 @@ import {
   Tooltip,
   useToast,
 } from "@chakra-ui/react";
-import { DropDown } from "./DropDown/index.js";
-import moment from "moment";
-import { useSelector, useDispatch } from "react-redux";
-import { setToday } from "../reducers/isToday.js";
+import { Button } from "./Button"; // Grouped with other Chakra UI components
+
+import moment from "moment"; // Libraries
+import { useSelector, useDispatch } from "react-redux"; // State management
+
+import { DropDown } from "./DropDown/index.js"; // Custom components
+import imgLogo from "../assets/img/logo-in-calendar.svg"; // Assets
+
+import { setToday } from "../reducers/isToday.js"; // Reducers
 import { userSignedOut } from "../reducers/isSignedInUser.js";
 import { showToast } from "../toast/toast.js";
-import { Button } from "./Button";
 
 export const Header = ({ onSelected }) => {
   const pickedDate = useSelector((state) => state.pickedDate);
@@ -63,7 +68,7 @@ export const Header = ({ onSelected }) => {
         <Flex justify="space-between" alignItems="center">
           <Flex align="center" gap={4}>
             <Flex align="center">
-              <Image src="../../img/logo-in-calendar.svg" alt="logo-calendar" />
+              <Image src={imgLogo} alt="logo-calendar" />
               <Heading as="h4" size="md" fontWeight={400}>
                 WebCalendar
               </Heading>

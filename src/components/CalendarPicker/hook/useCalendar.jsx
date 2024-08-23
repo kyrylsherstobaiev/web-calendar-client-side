@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getDatePicker } from "../../../getDatePicker.js";
-import { arrayRange } from "../../../arrayRange.js";
+import { getDatePicker } from "../../../helpers/getDatePicker.js";
+import { arrayRange } from "../../../helpers/arrayRange.js";
 import { useDispatch, useSelector } from "react-redux";
 import { setPickedDate } from "../../../reducers/pickedDate.js";
 import { resetToday } from "../../../reducers/isToday.js";

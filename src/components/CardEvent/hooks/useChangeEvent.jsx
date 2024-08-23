@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateEvent } from "../../../api.js";
+import { updateEvent } from "../../../api/api.js";
 import moment from "moment";
 import { showToast } from "../../../toast/toast.js";
 import { useToast } from "@chakra-ui/react";

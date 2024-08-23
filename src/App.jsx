@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home.jsx";
 import {
   ChakraProvider,
   extendTheme,
@@ -9,11 +8,14 @@ import {
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+import { Home } from "./pages/Home.jsx";
 import { SignUp } from "./pages/SignUp.jsx";
 import { PageNotFound } from "./pages/PageNotFound.jsx";
 import { SignIn } from "./pages/SignIn.jsx";
 
 const client = new QueryClient();
+
 const customTheme = extendTheme(
   withDefaultColorScheme({ colorScheme: "green" }),
 );

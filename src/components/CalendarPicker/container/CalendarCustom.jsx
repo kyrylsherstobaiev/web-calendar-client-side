@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
-import { arrayRange } from "../../../arrayRange.js";
+import { arrayRange } from "../../../helpers/arrayRange.js";
 import classNames from "classnames";
 import { useCalendar } from "../hook/useCalendar.jsx";
 import PropTypes from "prop-types";

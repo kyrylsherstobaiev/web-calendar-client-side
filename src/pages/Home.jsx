@@ -1,10 +1,10 @@
+import { useSelector } from "react-redux";
 import { UserNotFound } from "../components/UserNotFound.jsx";
 import { UserSignedIn } from "../components/UserSignedIn/UserSignedIn.jsx";
-import { useSelector } from "react-redux";
 
 export const Home = () => {
-  let dataUser = useSelector((state) => state.isSignedInUser);
+  const userData = useSelector((state) => state.isSignedInUser);
+  const isUserSignedIn = !!userData?.user;
 
-  // noinspection JSUnresolvedReference
-  return !dataUser?.user ? <UserNotFound /> : <UserSignedIn />;
+  return isUserSignedIn ? <UserSignedIn /> : <UserNotFound />;
 };

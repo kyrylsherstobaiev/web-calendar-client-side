@@ -126,7 +126,7 @@ export const CardEvent = ({
                   render={({ field: { onChange }, fieldState: { error } }) => (
                     <Select
                       title="-- Start event time --"
-                      onSelected={onChange} // send value to hook form
+                      onSelected={onChange}
                       error={error?.message}
                       defaultValue={startTimeEventValue}
                       options={options}
@@ -139,7 +139,7 @@ export const CardEvent = ({
                   render={({ field: { onChange }, fieldState: { error } }) => (
                     <Select
                       title="-- End event time --"
-                      onSelected={onChange} // send value to hook form
+                      onSelected={onChange}
                       error={error?.message}
                       defaultValue={endTimeEventValue}
                       options={options}
